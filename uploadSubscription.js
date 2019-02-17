@@ -2,16 +2,23 @@ var ipfsClient = require('ipfs-http-client')
 var chalk = require('chalk')
 
 module.exports = async function () {
-  console.log(chalk.yellow(`Uploading webhook to IPFS...`))
+  console.log(chalk.yellow(`Uploading subscription to IPFS...`))
 
   var ipfs = ipfsClient('ipfs.infura.io', '5001', { protocol: 'https' })
+  const websocketUri = "wss://api.thegraph.com/subgraphs/name/graphprotocol/decentraland"
 
   var webhook = {
     url: "https://eniipbp6x9vi.x.pipedream.net",
     query: {
-      queryType: "EventQuery",
-      address: "0xff67881f8d12f372d91baae9752eb3631ff0ed00",
-      topics: []
+      queryType: "GraphQuery",
+      websocketUri,
+      subscriptionQuery: `
+        subscription decentraland {
+          parcels {
+            id
+          }
+        }
+      `
     }
   }
 

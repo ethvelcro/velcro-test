@@ -8,9 +8,17 @@
     "ipfs-http-client": "^29.1.1",
     "truffle-hdwallet-provider": "^1.0.0-web3one.5",
     "velcro-contracts": "^0.0.2",
-    "web3": "^1.0.0-beta.46"
+    "web3": "^1.0.0-beta.46",
+    "apollo-boost": "^0.1.28",
+    "apollo-cache-inmemory": "^1.4.3",
+    "apollo-link-ws": "^1.0.14",
+    "apollo-utilities": "^1.1.3",
+    "subscriptions-transport-ws": "^0.9.15",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1"
   },
   "scripts": {
-    "register": "node register.js"
+    "register": "node register.js",
+    "subscribe": "node subscribe.js"
   }
 }

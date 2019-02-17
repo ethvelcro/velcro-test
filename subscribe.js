@@ -1,11 +1,11 @@
 var velcroArtifact = require('velcro-contracts/build/contracts/Velcro.json')
 var newWeb3 = require('./newWeb3')
 var chalk = require('chalk')
-var uploadWebhook = require('./uploadWebhook')
+var uploadSubscription = require('./uploadSubscription')
 
-async function register () {
-  // const oldHash = 'QmbXw1QSQSM3GUYqqFxUbLX5aSrH2aa3dpcqUgiKMQ953B'
-  const hash = await uploadWebhook()
+async function subscribe () {
+  const hash = await uploadSubscription()
+  // const hash = "QmWj4XX6pWEtMxyMUjJ2xHhALZ6ESnteSa32cSGVjbx3kn"
 
   const web3 = newWeb3()
   const accounts = await web3.eth.getAccounts()
@@ -21,11 +21,14 @@ async function register () {
     })
   }
 
-  const tx = await velcro.methods.registerWebhook(hex).send({ from: owner })
+  const tx = await velcro.methods.registerWebhook(hex).send({
+    from: owner
+  })
+
   console.log(chalk.green(`TxResult: ${tx.txHash}`), tx)
 }
 
-register()
+subscribe()
   .then(() => {
     console.log(chalk.green('Complete!'))
     process.exit(0)
